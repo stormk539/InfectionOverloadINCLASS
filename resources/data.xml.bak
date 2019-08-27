@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <pack>
-    <actor adamp="0.0" ascale="false" atlasID="0" bodytype="2" continuous="false" desc="" eventsnippetid="-1" fixedrot="true" fric="0.2" gid="4" id="7" ignoreg="true" inertia="0.01" ldamp="0.0" mass="0.1" name="Alien Cruiser" oid="-1" pausable="true" physicsMode="0" rest="0.0" shared="false" sprite="8" static="false">
+    <actor adamp="0.0" ascale="false" atlasID="0" bodytype="2" continuous="false" desc="" eventsnippetid="14" fixedrot="true" fric="0.2" gid="4" id="7" ignoreg="true" inertia="0.01" ldamp="0.0" mass="0.1" name="Alien Cruiser" oid="-1" pausable="true" physicsMode="0" rest="0.0" shared="false" sprite="8" static="false">
         <snippets>
             <s enabled="true" id="0">
                 <prop id="2147483647" list="0" val="thisactor"/>
@@ -23,7 +23,7 @@
         </snippets>
     </actor>
     <sprite atlasID="0" default="0" defaultAnimation="0" desc="" height="64" id="8" name="Alien Cruiser" shared="false" width="64">
-        <anim across="4" down="1" durations="50,50,50,50" height="64" id="0" loop="true" name="Animation 0" numframes="4" originx="32" originy="32" sync="false" version="1" width="256">
+        <anim across="2" down="2" durations="100,100,100,100" height="128" id="0" loop="true" name="Spin" numframes="4" originx="32" originy="32" sync="false" version="2" width="128">
             <poly data="4,0,0,64,0,64,64,0,64" density="0.1" fric="0.2" gid="-1000" id="0" name="Animation 0" rest="0.0" sensor="false"/>
         </anim>
     </sprite>
@@ -121,7 +121,7 @@
             <poly data="4,0,0,17,0,17,23,0,23" density="0.1" fric="0.2" gid="-1000" id="0" name="Animation 0" rest="0.0" sensor="true"/>
         </anim>
     </sprite>
-    <actor adamp="0.0" ascale="false" atlasID="0" bodytype="2" continuous="false" desc="" eventsnippetid="-1" fixedrot="true" fric="0.2" gid="3" id="1" ignoreg="true" inertia="0.01" ldamp="0.0" mass="0.1" name="Player Tank" oid="-1" pausable="true" physicsMode="0" rest="0.0" shared="false" sprite="2" static="false">
+    <actor adamp="0.0" ascale="false" atlasID="0" bodytype="2" continuous="false" desc="" eventsnippetid="13" fixedrot="true" fric="0.2" gid="3" id="1" ignoreg="true" inertia="0.01" ldamp="0.0" mass="0.1" name="Player Tank" oid="-1" pausable="true" physicsMode="0" rest="0.0" shared="false" sprite="2" static="false">
         <snippets>
             <s enabled="true" id="5">
                 <prop id="2147483647" list="0" val="thisactor"/>
@@ -158,8 +158,8 @@
             </s>
         </snippets>
     </actor>
-    <sprite atlasID="0" default="0" defaultAnimation="0" desc="" height="64" id="2" name="Player Tank" shared="false" width="64">
-        <anim across="1" down="1" durations="100" height="64" id="0" loop="true" name="Animation 0" numframes="1" originx="32" originy="32" sync="false" version="1" width="64">
+    <sprite atlasID="0" default="0" defaultAnimation="0" desc="" height="64" id="2" name="Player Tank" shared="false" width="66">
+        <anim across="2" down="2" durations="100,100,100,100" height="128" id="0" loop="true" name="Animation 0" numframes="4" originx="33" originy="32" sync="false" version="2" width="132">
             <poly data="4,0,0,64,0,64,64,0,64" density="0.1" fric="0.2" gid="-1000" id="0" name="Animation 0" rest="0.0" sensor="false"/>
         </anim>
     </sprite>

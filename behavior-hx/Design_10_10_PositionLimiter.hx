@@ -19,6 +19,7 @@ import com.stencyl.models.Scene;
 import com.stencyl.models.Sound;
 import com.stencyl.models.Region;
 import com.stencyl.models.Font;
+import com.stencyl.models.Joystick;
 
 import com.stencyl.Engine;
 import com.stencyl.Input;
@@ -69,43 +70,38 @@ import com.stencyl.graphics.shaders.BloomShader;
 
 
 class Design_10_10_PositionLimiter extends ActorScript
-{          	
+{
 	
- 
- 	public function new(dummy:Int, actor:Actor, dummy2:Engine)
+	
+	public function new(dummy:Int, actor:Actor, dummy2:Engine)
 	{
 		super(actor);
 		nameMap.set("Actor", "actor");
-
+		
 	}
 	
 	override public function init()
 	{
-		    
-/* ======================== When Creating ========================= */
-
-    
-/* ======================== When Updating ========================= */
-addWhenUpdatedListener(null, function(elapsedTime:Float, list:Array<Dynamic>):Void
-{
-if(wrapper.enabled)
-{
-        /* Don't go off the left side. */
-        if((actor.getX() < 1))
-{
-            actor.setX(2);
-}
-
-        /* Don't go off the right side. */
-        if(((actor.getX() + (actor.getWidth())) > ((getSceneWidth()) - 1)))
-{
-            actor.setX((((getSceneWidth()) - 2) - (actor.getWidth())));
-}
-
-}
-});
-
-	}	      	
+		
+		/* ======================== When Updating ========================= */
+		addWhenUpdatedListener(null, function(elapsedTime:Float, list:Array<Dynamic>):Void
+		{
+			if(wrapper.enabled)
+			{
+				/* Don't go off the left side. */
+				if((actor.getX() < 1))
+				{
+					actor.setX(2);
+				}
+				/* Don't go off the right side. */
+				if(((actor.getX() + (actor.getWidth())) > ((getSceneWidth()) - 1)))
+				{
+					actor.setX((((getSceneWidth()) - 2) - (actor.getWidth())));
+				}
+			}
+		});
+		
+	}
 	
 	override public function forwardMessage(msg:String)
 	{

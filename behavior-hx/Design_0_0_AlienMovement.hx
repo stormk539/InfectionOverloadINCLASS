@@ -19,6 +19,7 @@ import com.stencyl.models.Scene;
 import com.stencyl.models.Sound;
 import com.stencyl.models.Region;
 import com.stencyl.models.Font;
+import com.stencyl.models.Joystick;
 
 import com.stencyl.Engine;
 import com.stencyl.Input;
@@ -69,99 +70,86 @@ import com.stencyl.graphics.shaders.BloomShader;
 
 
 class Design_0_0_AlienMovement extends ActorScript
-{          	
+{
+	public var _MovementSpeed:Float;
+	public var _SlidandIncreasedforSelf:Bool;
 	
-public var _MovementSpeed:Float;
-
-public var _SlidandIncreasedforSelf:Bool;
-
- 
- 	public function new(dummy:Int, actor:Actor, dummy2:Engine)
+	
+	public function new(dummy:Int, actor:Actor, dummy2:Engine)
 	{
 		super(actor);
+		nameMap.set("Actor", "actor");
 		nameMap.set("Movement Speed", "_MovementSpeed");
-_MovementSpeed = 2.0;
-nameMap.set("Slid and Increased for Self", "_SlidandIncreasedforSelf");
-_SlidandIncreasedforSelf = false;
-nameMap.set("Actor", "actor");
-
+		_MovementSpeed = 2.0;
+		nameMap.set("Slid and Increased for Self", "_SlidandIncreasedforSelf");
+		_SlidandIncreasedforSelf = false;
+		
 	}
 	
 	override public function init()
 	{
-		    
-/* ======================== When Creating ========================= */
-
-    
-/* ======================== When Updating ========================= */
-addWhenUpdatedListener(null, function(elapsedTime:Float, list:Array<Dynamic>):Void
-{
-if(wrapper.enabled)
-{
-        /* Reached an edge. Slide down towards the
+		
+		/* ======================== When Updating ========================= */
+		addWhenUpdatedListener(null, function(elapsedTime:Float, list:Array<Dynamic>):Void
+		{
+			if(wrapper.enabled)
+			{
+				/* Reached an edge. Slide down towards the
 player and increase the movement speed. */
-        if(Engine.engine.getGameAttribute("Slide and Increase Speed"))
-{
-            if(!(_SlidandIncreasedforSelf))
-{
-                _SlidandIncreasedforSelf = true;
-propertyChanged("_SlidandIncreasedforSelf", _SlidandIncreasedforSelf);
-                actor.moveBy(0, 16, 0.2, Linear.easeNone);
-                _MovementSpeed = asNumber((_MovementSpeed + 1));
-propertyChanged("_MovementSpeed", _MovementSpeed);
-                runLater(1000 * 0.02, function(timeTask:TimedTask):Void {
-                            Engine.engine.setGameAttribute("Slide and Increase Speed", false);
-                            _SlidandIncreasedforSelf = false;
-propertyChanged("_SlidandIncreasedforSelf", _SlidandIncreasedforSelf);
-}, actor);
-}
-
-}
-
-        /* Reached the left side. Switch direction. */
-        if((actor.getX() <= 2))
-{
-            if(!(Engine.engine.getGameAttribute("Move Right")))
-{
-                Engine.engine.setGameAttribute("Slide and Increase Speed", true);
-                Engine.engine.setGameAttribute("Move Right", true);
-}
-
-}
-
-        /* Reached the right side. Switch direction. */
-        if(((actor.getX() + (actor.getWidth())) >= ((getSceneWidth()) - 2)))
-{
-            if(Engine.engine.getGameAttribute("Move Right"))
-{
-                Engine.engine.setGameAttribute("Slide and Increase Speed", true);
-                Engine.engine.setGameAttribute("Move Right", false);
-}
-
-}
-
-        /* Make the aliens move left or right
+				if(Engine.engine.getGameAttribute("Slide and Increase Speed"))
+				{
+					if(!(_SlidandIncreasedforSelf))
+					{
+						_SlidandIncreasedforSelf = true;
+						propertyChanged("_SlidandIncreasedforSelf", _SlidandIncreasedforSelf);
+						actor.moveBy(0, 16, 0.2, Linear.easeNone);
+						_MovementSpeed = asNumber((_MovementSpeed + 1));
+						propertyChanged("_MovementSpeed", _MovementSpeed);
+						runLater(1000 * 0.02, function(timeTask:TimedTask):Void
+						{
+							Engine.engine.setGameAttribute("Slide and Increase Speed", false);
+							_SlidandIncreasedforSelf = false;
+							propertyChanged("_SlidandIncreasedforSelf", _SlidandIncreasedforSelf);
+						}, actor);
+					}
+				}
+				/* Reached the left side. Switch direction. */
+				if((actor.getX() <= 2))
+				{
+					if(!(Engine.engine.getGameAttribute("Move Right")))
+					{
+						Engine.engine.setGameAttribute("Slide and Increase Speed", true);
+						Engine.engine.setGameAttribute("Move Right", true);
+					}
+				}
+				/* Reached the right side. Switch direction. */
+				if(((actor.getX() + (actor.getWidth())) >= ((getSceneWidth()) - 2)))
+				{
+					if(Engine.engine.getGameAttribute("Move Right"))
+					{
+						Engine.engine.setGameAttribute("Slide and Increase Speed", true);
+						Engine.engine.setGameAttribute("Move Right", false);
+					}
+				}
+				/* Make the aliens move left or right
 at a constant rate. */
-        if(Engine.engine.getGameAttribute("Move Right"))
-{
-            actor.setXVelocity(_MovementSpeed);
-}
-
-        else
-{
-            actor.setXVelocity(-(_MovementSpeed));
-}
-
-        /* They reached the end. You die. */
-        if((actor.getY() >= ((getSceneHeight()) - 159)))
-{
-            reloadCurrentScene(createFadeOut(0.3), createFadeIn(0.3));
-}
-
-}
-});
-
-	}	      	
+				if(Engine.engine.getGameAttribute("Move Right"))
+				{
+					actor.setXVelocity(_MovementSpeed);
+				}
+				else
+				{
+					actor.setXVelocity(-(_MovementSpeed));
+				}
+				/* They reached the end. You die. */
+				if((actor.getY() >= ((getSceneHeight()) - 159)))
+				{
+					reloadCurrentScene(createFadeOut(0.3), createFadeIn(0.3));
+				}
+			}
+		});
+		
+	}
 	
 	override public function forwardMessage(msg:String)
 	{

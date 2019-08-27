@@ -19,6 +19,7 @@ import com.stencyl.models.Scene;
 import com.stencyl.models.Sound;
 import com.stencyl.models.Region;
 import com.stencyl.models.Font;
+import com.stencyl.models.Joystick;
 
 import com.stencyl.Engine;
 import com.stencyl.Input;
@@ -69,35 +70,32 @@ import com.stencyl.graphics.shaders.BloomShader;
 
 
 class Design_1_1_DieWhenHit extends ActorScript
-{          	
+{
 	
- 
- 	public function new(dummy:Int, actor:Actor, dummy2:Engine)
+	
+	public function new(dummy:Int, actor:Actor, dummy2:Engine)
 	{
 		super(actor);
 		nameMap.set("Actor", "actor");
-
+		
 	}
 	
 	override public function init()
 	{
-		    
-/* ======================== When Creating ========================= */
-
-    
-/* ======================== Something Else ======================== */
-addCollisionListener(actor, function(event:Collision, list:Array<Dynamic>):Void
-{
-if(wrapper.enabled)
-{
-        /* See 'Explode on Death' behavior to see the logic for HandleDeath. */
-        actor.shout("_customEvent_" + "HandleDeath");
-        recycleActor(actor.getLastCollidedActor());
-        recycleActor(actor);
-}
-});
-
-	}	      	
+		
+		/* ======================== Something Else ======================== */
+		addCollisionListener(actor, function(event:Collision, list:Array<Dynamic>):Void
+		{
+			if(wrapper.enabled)
+			{
+				/* See 'Explode on Death' behavior to see the logic for HandleDeath. */
+				actor.shout("_customEvent_" + "HandleDeath");
+				recycleActor(actor.getLastCollidedActor());
+				recycleActor(actor);
+			}
+		});
+		
+	}
 	
 	override public function forwardMessage(msg:String)
 	{

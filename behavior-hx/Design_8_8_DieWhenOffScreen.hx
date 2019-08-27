@@ -19,6 +19,7 @@ import com.stencyl.models.Scene;
 import com.stencyl.models.Sound;
 import com.stencyl.models.Region;
 import com.stencyl.models.Font;
+import com.stencyl.models.Joystick;
 
 import com.stencyl.Engine;
 import com.stencyl.Input;
@@ -69,36 +70,35 @@ import com.stencyl.graphics.shaders.BloomShader;
 
 
 class Design_8_8_DieWhenOffScreen extends ActorScript
-{          	
+{
 	
- 
- 	public function new(dummy:Int, actor:Actor, dummy2:Engine)
+	
+	public function new(dummy:Int, actor:Actor, dummy2:Engine)
 	{
 		super(actor);
 		nameMap.set("Actor", "actor");
-
+		
 	}
 	
 	override public function init()
 	{
-		    
-/* ======================== When Creating ========================= */
-        actor.makeAlwaysSimulate();
-    
-/* ======================== When Updating ========================= */
-addWhenUpdatedListener(null, function(elapsedTime:Float, list:Array<Dynamic>):Void
-{
-if(wrapper.enabled)
-{
-        if(!(actor.isOnScreen()))
-{
-            recycleActor(actor);
-}
-
-}
-});
-
-	}	      	
+		
+		/* ======================== When Creating ========================= */
+		actor.makeAlwaysSimulate();
+		
+		/* ======================== When Updating ========================= */
+		addWhenUpdatedListener(null, function(elapsedTime:Float, list:Array<Dynamic>):Void
+		{
+			if(wrapper.enabled)
+			{
+				if(!(actor.isOnScreen()))
+				{
+					recycleActor(actor);
+				}
+			}
+		});
+		
+	}
 	
 	override public function forwardMessage(msg:String)
 	{
